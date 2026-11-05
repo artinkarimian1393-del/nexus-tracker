@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}NEXUS TRACKER{% endblock %}</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><header><a class="brand" href="/">NEXUS TRACKER</a><nav><a href="/">خانه</a>{% if session.get('admin') %}<a href="/dashboard">داشبورد</a><a href="/rdap">استعلام RDAP</a><form class="inline" method="post" action="/logout"><button class="linkbtn">خروج</button></form>{% else %}<a href="/login">ورود مدیر</a>{% endif %}</nav></header>
+<main>{% with messages = get_flashed_messages() %}{% if messages %}<div class="notice">{% for m in messages %}<p>{{m}}</p>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</main>
+<footer>نسخه آغازین • شفافیت و رضایت بازدیدکننده</footer></body></html>

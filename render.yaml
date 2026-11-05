@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: nexus-tracker
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DATABASE_PATH
+        value: /var/data/tracker.db
+    disk:
+      name: tracker-data
+      mountPath: /var/data
+      sizeGB: 1
